@@ -1,0 +1,147 @@
+<div class="min-h-screen bg-fixed bg-cover bg-center"
+     style="background-image: url('https://images.unsplash.com/photo-1495195134817-aeb325a55b65?auto=format&fit=crop&w=2000&q=80')">
+  <div class="min-h-screen backdrop-blur-sm bg-white/30">
+    <div class="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-8">
+
+      <!-- Highlights Section -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+        <div *ngFor="let highlight of highlights"
+             class="bg-white/80 backdrop-blur-md p-6 rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1 cursor-pointer">
+          <div class="flex items-center space-x-4">
+            <!-- Render the icon dynamically using a class -->
+            <i [class]="'w-8 h-8 text-amber-500 ' + highlight.icon"></i>
+            <div>
+              <h3 class="font-bold text-gray-900">{{ highlight.title }}</h3>
+              <p class="text-gray-600">{{ highlight.description }}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Header Section -->
+      <div class="bg-white/80 backdrop-blur-md rounded-xl shadow-lg p-8 mb-12">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+
+          <!-- Product Image -->
+          <div class="relative group">
+            <img [src]="product.products_image_url" [alt]="product.product_name"
+                 class="w-full h-[500px] object-cover rounded-lg shadow-md">
+            <div class="absolute inset-0 bg-gradient-to-t from-amber-500/50 to-transparent rounded-lg"></div>
+          </div>
+
+          <!-- Product Details -->
+          <div class="space-y-6">
+            <div>
+              <h1 class="text-5xl font-bold mb-2 bg-clip-text text-transparent bg-gradient-to-r from-amber-600 to-amber-900">
+                {{ product.product_name }}
+              </h1>
+              <p class="text-2xl text-amber-800">{{ product.products_generic_name_en }}</p>
+              <div class="space-y-4">
+                <div class="space-y-4">
+                  <!-- Brand and Owner -->
+                  <div class="flex items-center space-x-2 p-3 bg-white/50 rounded-lg backdrop-blur-sm">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-amber-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2z" />
+                    </svg>
+                    <span class="text-lg">{{ product.product_brands }} - {{ product.product_brand_owner }}</span>
+                  </div>
+                
+                  <!-- Countries -->
+                  <div class="flex items-center space-x-2 p-3 bg-white/50 rounded-lg backdrop-blur-sm">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-amber-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12h18M9 3v18m6-18v18" />
+                    </svg>
+                    <span class="text-lg">{{ product.products_countries.join(', ') }}</span>
+                  </div>
+                
+                  <!-- Labels -->
+                  <div class="flex items-center space-x-2 p-3 bg-white/50 rounded-lg backdrop-blur-sm">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-amber-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 14l6-6M9 10v4h4" />
+                    </svg>
+                    <span class="text-lg">{{ product.products_labels }}</span>
+                  </div>
+                </div>
+
+            <div class="flex flex-wrap gap-2 mt-6">
+              <span *ngFor="let analysis of product.products_ingrident_ingrident_analysis"
+                    class="bg-amber-50 text-amber-900 px-4 py-2 rounded-full text-sm font-medium hover:bg-amber-100 transition-colors duration-200 cursor-pointer border border-amber-200 shadow-sm">
+                {{ analysis }}
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Images Section -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
+        <div class="bg-white/80 backdrop-blur-md p-6 rounded-lg shadow-md">
+          <h3 class="text-xl font-bold mb-4 text-amber-900">Ingredients</h3>
+          <img [src]="product.products_image_ingredients_url" alt="Ingredients"
+               class="w-full h-auto rounded-lg">
+        </div>
+        <div class="bg-white/80 backdrop-blur-md p-6 rounded-lg shadow-md">
+          <h3 class="text-xl font-bold mb-4 text-amber-900">Nutrition</h3>
+          <img [src]="product.product_image_nutrition_url" alt="Nutrition"
+               class="w-full h-auto rounded-lg">
+        </div>
+      </div>
+
+      <!-- Nutrition Facts and Nutri-Score -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div class="bg-white/80 backdrop-blur-md p-6 rounded-lg shadow-md">
+          <h3 class="text-2xl font-bold mb-4">Nutrition Facts</h3>
+          <!-- Dynamically render nutrition details -->
+          <div *ngFor="let nutriment of product.products_nutrient_level | keyvalue">
+            <div class="flex justify-between items-center py-2 border-b border-amber-100 px-2 rounded-lg">
+              <!-- Format and display the key -->
+              <span class="capitalize text-amber-900">{{ transformKey(nutriment.key) }}</span>
+              <!-- Display the value with appropriate units -->
+              <span class="font-semibold text-amber-700">
+                {{ nutriment.value }}
+                <ng-container *ngIf="isNumberKey(nutriment.key, nutriment.value)">
+                  g/100g
+                </ng-container>
+              </span>
+            </div>
+          </div>
+        </div>
+        <div class="bg-white/80 backdrop-blur-md p-6 rounded-lg shadow-md">
+          <h3 class="text-2xl font-bold mb-4">Nutri-Score</h3>
+          <div class="flex space-x-1">
+            <div *ngFor="let g of grades"
+                 [class]="'flex-1 h-12 rounded-md flex items-center justify-center text-white font-bold text-md shadow-lg ' + (g === product.products_nutriscore_data.grade ? getGradeColor(g) : 'bg-gray-200')">
+              {{ g }}
+            </div>
+          </div>
+          <div class="mt-4 text-center">
+            <span class="text-3xl font-bold text-amber-600">{{ product.products_nutriscore_data.score }}</span>
+            <span class="text-amber-700 ml-2">points</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Additional Info -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mt-12">
+        <div class="bg-white/80 backdrop-blur-md p-6 rounded-lg shadow-md">
+          <h3 class="text-2xl font-bold mb-4">Serving Information</h3>
+          <p><strong>Serving Size:</strong> {{ product.products_serving_size }}</p>
+          <p><strong>Quantity:</strong> {{ product.products_serving_quantity }} {{ product.products_serving_quantity_unit }}</p>
+          <p><strong>Package Size:</strong> {{ product.products_size_imported }}</p>
+        </div>
+        <div class="bg-white/80 backdrop-blur-md p-6 rounded-lg shadow-md">
+          <h3 class="text-2xl font-bold mb-4">Categories</h3>
+          <p><strong>Category:</strong> {{ product.product_categories }}</p>
+          <p><strong>Food Group:</strong> {{ product.products_food_group }}</p>
+          <p><strong>Keywords:</strong> {{ product.product_keyword }}</p>
+        </div>
+        <div class="bg-white/80 backdrop-blur-md p-6 rounded-lg shadow-md">
+          <h3 class="text-2xl font-bold mb-4">Nutrient Levels</h3>
+          <p><strong>Fat:</strong> {{ product.products_nutrient_level.fat }}</p>
+          <p><strong>Sugar:</strong> {{ product.products_nutrient_level.sugar }}</p>
+          <p><strong>Salt:</strong> {{ product.products_nutrient_level.salt }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,107 @@
+
+<div class="bg-gray-900 text-gray-100 min-h-screen">
+  <!-- Container -->
+  <div class="container mx-auto p-6">
+    <!-- Header -->
+    <div class="flex justify-between items-center mb-8">
+      <h1 class="text-3xl font-bold bg-gradient-to-r from-purple-400 to-pink-500 bg-clip-text text-transparent">
+        Dashboard of tsec™️
+      </h1>
+      <div class="flex items-center space-x-4">
+        <i data-feather="bell" class="w-6 h-6 text-white-400 hover:text-purple-400 cursor-pointer"></i>
+        <i data-feather="settings" class="w-6 h-6 text-white-400 hover:text-purple-400 cursor-pointer animate-spin-slow"></i>
+      </div>
+    </div>
+
+    <!-- Main Layout -->
+    <div class="flex flex-col lg:flex-row gap-6">
+      <!-- Stats Grid (Left Column) -->
+      <div class="flex flex-col gap-6 lg:w-1/10">
+        <div class="bg-white-800 rounded-lg p-6 transform hover:scale-105 transition-transform duration-300">
+          <div class="flex justify-between items-center">
+            <h3 class="text-white-400">Number of Active Users</h3>
+            <i data-feather="alert-circle" class="w-5 h-5 text-red-400"></i>
+          </div>
+          <p class="text-3xl font-bold mt-2" id="ignoredTickets">0</p>
+          <div class="mt-4 bg-white-700 h-2 rounded-full">
+            <div class="bg-red-400 h-2 rounded-full" style="width: 85%" id="ignoredProgress"></div>
+          </div>
+        </div>
+
+        <div class="bg-white-800 rounded-lg p-6 transform hover:scale-105 transition-transform duration-300">
+          <div class="flex justify-between items-center">
+            <h3 class="text-white-400">Orders Delivered</h3>
+            <i data-feather="coffee" class="w-5 h-5 text-yellow-400"></i>
+          </div>
+          <p class="text-3xl font-bold mt-2" id="coffeeCount">0</p>
+          <div class="mt-4 bg-white-700 h-2 rounded-full">
+            <div class="bg-yellow-400 h-2 rounded-full" style="width: 95%" id="coffeeProgress"></div>
+          </div>
+        </div>
+
+        <div class="bg-white-800 rounded-lg p-6 transform hover:scale-105 transition-transform duration-300">
+          <div class="flex justify-between items-center">
+            <h3 class="text-white-400">Carbon FootPrint</h3>
+            <i data-feather="heart" class="w-5 h-5 text-green-400"></i>
+          </div>
+          <p class="text-3xl font-bold mt-2" id="serverHealth">0</p>
+          <div class="mt-4 bg-white-700 h-2 rounded-full">
+            <div class="bg-green-400 h-2 rounded-full" style="width: 42%" id="serverProgress"></div>
+          </div>
+        </div>
+
+        <div class="bg-white-800 rounded-lg p-6 transform hover:scale-105 transition-transform duration-300">
+          <div class="flex justify-between items-center">
+            <h3 class="text-white-400">FootPrint Increased</h3>
+            <i data-feather="video-off" class="w-5 h-5 text-purple-400"></i>
+          </div>
+          <p class="text-3xl font-bold mt-2" id="meetingsAvoided">0</p>
+          <div class="mt-4 bg-white-700 h-2 rounded-full">
+            <div class="bg-purple-400 h-2 rounded-full" style="width: 75%" id="meetingsProgress"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Charts Grid (Right Column) -->
+      <div class="flex-1 grid grid-cols-1 lg:grid-cols-2 gap-6">
+        <div class="bg-white-800 rounded-lg p-6">
+          <h3 class="text-xl font-bold mb-4">Productivity vs. Coffee Intake</h3>
+          <canvas id="productivityChart" class="w-full h-64"></canvas>
+        </div>
+
+        <div class="bg-white-800 rounded-lg p-6">
+          <h3 class="text-xl font-bold mb-4">Tickets vs. Excuses Made</h3>
+          <canvas id="ticketChart" class="w-full h-64"></canvas>
+        </div>
+
+        <div class="bg-white-800 rounded-lg p-6">
+          <h3 class="text-xl font-bold mb-4">Pie Chart</h3>
+          <canvas id="pieChart" class="w-full h-64"></canvas>
+        </div>
+
+        <div class="bg-white-800 rounded-lg p-6">
+          <h3 class="text-xl font-bold mb-4">Radar Chart</h3>
+          <canvas id="radarChart" class="w-full h-64"></canvas>
+        </div>
+      </div>
+
+      <!-- Side-by-Side Layout for Badges and Progress Bar (Right Column) -->
+      <div class="flex flex-row gap-6 lg:w-2/10">
+        <!-- Badges Section -->
+        <div class="badges flex flex-wrap justify-center">
+          <img src="/assets/award (1).svg" alt="Badge 10" id="badge-10">
+          <img src="/assets/award (1).svg" alt="Badge 20" id="badge-20">
+          <img src="/assets/award (1).svg" alt="Badge 30" id="badge-30">
+        </div>
+
+        <!-- Progress Bar Section -->
+        <div class="progress-container flex flex-col items-center">
+          <div class="progress-bar">
+            <div class="fill" id="progress-fill"></div>
+          </div>
+          <input type="number" id="progress-input" min="0" max="100" placeholder="Enter value (0-100)">
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

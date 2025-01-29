@@ -1,0 +1,51 @@
+<div class="register-card">
+    <h1>Create Your Account</h1>
+    <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+      <!-- Username Field -->
+      <div class="form-group">
+        <label for="username">Username</label>
+        <input
+          type="text"
+          id="username"
+          formControlName="username"
+          placeholder="Enter your username"
+          autocomplete="username"
+        >
+        <div class="error" *ngIf="registerForm.get('username')?.invalid && registerForm.get('username')?.touched">
+          {{ getErrorMessage('username') }}
+        </div>
+      </div>
+  
+      <!-- Email Field -->
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input
+          type="email"
+          id="email"
+          formControlName="email"
+          placeholder="name@company.com"
+          autocomplete="email"
+        >
+        <div class="error" *ngIf="registerForm.get('email')?.invalid && registerForm.get('email')?.touched">
+          {{ getErrorMessage('email') }}
+        </div>
+      </div>
+  
+      <!-- Password Field -->
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input
+          type="password"
+          id="password"
+          formControlName="password"
+          placeholder="Enter your password"
+          autocomplete="new-password"
+        >
+        <div class="error" *ngIf="registerForm.get('password')?.invalid && registerForm.get('password')?.touched">
+          {{ getErrorMessage('password') }}
+        </div>
+      </div>
+  
+      <button type="submit" class="btn" [disabled]="registerForm.invalid">Register</button>
+    </form>
+  </div>

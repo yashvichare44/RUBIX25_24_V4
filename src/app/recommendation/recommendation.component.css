@@ -1,0 +1,237 @@
+/* VARIABLES CSS */
+/* Colores */
+:root{
+    --first-color: #E3F8FF;
+    --second-color: #DCFAFB;
+    --third-color: #FFE8DF;
+    --accent-color: #FF5151;
+    --dark-color: #161616;
+}
+
+/* Tipografia responsive */
+:root{
+    --body-font: 'Open Sans';
+    --h1-font-size: 1.5rem;
+    --h3-font-size: 1rem;
+    --normal-font-size: 0.938rem;
+    --smaller-font-size: 0.75rem;
+}
+@media screen and (min-width: 768px){
+    :root{
+        --h1-font-size: 2rem;
+        --normal-font-size: 1rem;
+        --smaller-font-size: 0.813rem;
+    }
+}
+
+/* BASE */
+*,::after,::before{
+    box-sizing: border-box;
+}
+header {
+    background-image: url("123.png");
+    background-size: cover;
+    background-position: center;
+    padding: 0;
+    height: 300px;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    color: #000;
+    text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.8);
+    font-size: 24px;
+    font-weight: bold;
+}
+
+/* Search Section */
+#search {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+#search input {
+    padding: 10px;
+    width: 60%;
+    margin-right: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+#search button {
+    padding: 10px 20px;
+    background-color: #2980b9;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+#search button i {
+    margin-right: 5px;
+}
+
+/* Recommendations Section */
+#recommendations {
+    text-align: center;
+    margin-top: 20px;
+    font-size: xx-large;
+    
+}
+
+#recommendations h1 {
+    font-size: var(--h1-font-size);
+    margin-bottom: 10px;
+}
+
+#moviesList {
+    margin-top: 20px;
+}
+
+#moviesList p {
+    font-size: var(--normal-font-size);
+    color: var(--dark-color);
+}
+
+/* Main Product Cards Layout */
+.main {
+    padding: 2rem 0;
+}
+
+.bd-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    max-width: 1200px;
+    max-height: 400px;
+    margin-left: 2.5rem;
+    margin-right: 2.5rem;
+    align-items: center;
+    gap: 2rem;
+}
+
+/* Product Card Styling */
+.card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 1.5rem 2rem;
+    border-radius: 1rem;
+    overflow: hidden;
+    background-color: var(--first-color); /* Default color for first card */
+}
+
+.card__img img {
+    width: 180px;
+    height: auto;
+    padding: 3rem 0;
+    transition: .5s;
+}
+
+.card__name {
+    position: absolute;
+    left: -25%;
+    top: 0;
+    width: 3.5rem;
+    height: 100%;
+    writing-mode: vertical-rl;
+    transform: rotate(180deg);
+    text-align: center;
+    background-color: var(--dark-color);
+    color: #fff;
+    font-weight: bold;
+    transition: .5s;
+}
+
+.card__precis {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    transition: .5s;
+}
+
+.card__preci {
+    display: block;
+    text-align: center;
+}
+
+.card__preci--before {
+    font-size: var(--smaller-font-size);
+    color: var(--accent-color);
+    margin-bottom: .25rem;
+}
+
+.card__preci--now {
+    font-size: var(--h3-font-size);
+    font-weight: bold;
+}
+
+/* Hover Effect on Product Card */
+.card:hover {
+    box-shadow: 0 .5rem 1rem #D1D9E6;
+}
+
+.card:hover .card__name {
+    left: 0;
+}
+
+.card:hover .card__img {
+    transform: rotate(30deg);
+    margin-left: 3.5rem;
+}
+
+.card:hover .card__precis {
+    margin-left: 3.5rem;
+    padding: 0 1.5rem;
+}
+
+/* FOOTER */
+footer {
+    text-align: center;
+}
+
+/* Media Queries */
+@media screen and (min-width: 1200px) {
+    body {
+        margin: 3rem 0 0 0;
+    }
+
+    .title-shop {
+        margin: 0 5rem;
+    }
+
+    .bd-grid {
+        margin-left: auto;
+        margin-right: auto;
+    }
+}
+.container {
+    padding: 20px;
+  }
+  
+  #search {
+    margin-bottom: 20px;
+  }
+  
+  .product-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+  
+  .product-box {
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 10px;
+    text-align: center;
+    width: 200px;
+  }
+  
+  .product-image {
+    max-width: 100%;
+    height: auto;
+    margin-bottom: 10px;
+  }

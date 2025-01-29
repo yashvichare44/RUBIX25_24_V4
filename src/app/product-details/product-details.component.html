@@ -1,0 +1,71 @@
+<div class="min-h-screen bg-gradient">
+  <!-- Header -->
+  <header class="header">
+    <div class="container">
+      <div>
+        <h1 class="title">EcoShop</h1>
+        <p class="subtitle">Your sustainable shopping companion</p>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="container">
+    <!-- Welcome Message -->
+    <div class="welcome">
+      <div class="text-center">
+        <div class="leaf-icon"></div>
+        <h2 class="welcome-title">Welcome to EcoShop</h2>
+        <p class="welcome-subtitle">
+          Discover eco-friendly products that make a difference.
+        </p>
+      </div>
+
+      <!-- Search Bar -->
+      <div class="search-bar">
+        <div class="search-input">
+          <input
+            type="text"
+            placeholder="Search..."
+            [(ngModel)]="searchQuery"
+            class="input"
+          />
+          <div class="search-icon"></div>
+        </div>
+        <button (click)="handleSearch()" class="search-button">
+          Search
+        </button>
+      </div>
+    </div>
+
+    <!-- Display Search Results -->
+    <div
+      class="results"
+      *ngIf="searchResults.length > 0"
+    >
+      <div
+        class="card"
+        *ngFor="let product of searchResults"
+      >
+      <a [routerLink]="['/shop']">
+        <img
+          [src]="product.image"
+          [alt]="product.name"
+          class="product-image"
+        />
+      </a>
+        <h3 class="product-name">{{ product.name }}</h3>
+        <p class="product-description">{{ product.description }}</p>
+        <p class="product-price">{{ product.price }}</p>
+      </div>
+    </div>
+
+    <!-- No Results Message -->
+    <div
+      class="no-results"
+      *ngIf="searchResults.length === 0 && searchQuery.trim() !== ''"
+    >
+      No products found for "{{ searchQuery }}".
+    </div>
+  </main>
+</div>

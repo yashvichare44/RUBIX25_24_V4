@@ -1,0 +1,28 @@
+<div class="container">
+    <header>
+      <h1>Product Recommendations</h1>
+    </header>
+  
+    <!-- Input Section -->
+    <section id="search">
+      <input
+        type="text"
+        [(ngModel)]="searchInput"
+        placeholder="Enter a product code..."
+      />
+      <button (click)="fetchSimilarProducts()">Get Recommendations</button>
+    </section>
+  
+    <!-- Product Display Section -->
+    <div class="product-list">
+        <div *ngFor="let product of productsWithImage" class="product-item">
+          <div *ngIf="product.image; else noImage">
+            <img [src]="product.image" alt="Product Image" class="product-image" />
+          </div>
+          <ng-template #noImage>
+            <div class="no-image">
+              <p>No image available for product code: {{ product.code }}</p>
+            </div>
+          </ng-template>
+        </div>
+      </div>
